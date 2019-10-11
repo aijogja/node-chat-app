@@ -1,0 +1,29 @@
+{
+  "name": "node-chat-app",
+  "version": "0.0.1",
+  "description": "Build chat app based on Node.js using Express.js and Socket.io",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.3.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aijogja/node-chat-app.git"
+  },
+  "keywords": [
+    "nodejs",
+    "chat",
+    "app",
+    "socket.io"
+  ],
+  "author": "aijogja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aijogja/node-chat-app/issues"
+  },
+  "homepage": "https://github.com/aijogja/node-chat-app#readme"
+}
