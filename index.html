@@ -16,42 +16,45 @@
   <body>
     <ul id="messages"></ul>
     <form action="" id="chatForm">
-      <input id="m" autocomplete="off" /><button>Send</button>
+      <input name="pesan" autocomplete="off" /><button>Send</button>
     </form>
   </body>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
-    var chat_form = document.getElementById("chatForm");
-    var inputMessage = document.getElementById("m");
+
+    var chatForm = document.getElementById("chatForm");
+    var divMessage = document.getElementById("messages");
     var username = prompt('Please tell me your name');
+
     socket.emit('username', username);
 
     // function to create li element
     const message_item = (msg) => {
-      let li_item = document.createElement("LI");
-      let text = document.createTextNode(msg);
-      li_item.appendChild(text);
-      return li_item;
+      const liItem = document.createElement("LI");
+      const text = document.createTextNode(msg);
+      liItem.appendChild(text);
+      return liItem;
     };
 
     // submit the message
-    chat_form.addEventListener('submit', function(event){
+    chatForm.addEventListener('submit', function(event){
       event.preventDefault();
-      socket.emit('chat_message', inputMessage.value);
+      const inputMessage = event.target.pesan.value;
+      socket.emit('chat_message', inputMessage);
       this.reset();
     })
 
     // append the message on socket events
     socket.on('chat_message', function(msg){
       let message = message_item(msg);
-      document.getElementById("messages").appendChild(message);
+      divMessage.appendChild(message);
     });
     socket.on('connected', function(msg){
-      document.getElementById("messages").appendChild(message_item(msg));
+      divMessage.appendChild(message_item(msg));
     });
     socket.on('disconnected', function(msg){
-      document.getElementById("messages").appendChild(message_item(msg));
+      divMessage.appendChild(message_item(msg));
     });
   </script>
 </html>
